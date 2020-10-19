@@ -13,7 +13,7 @@ defmodule Mailchimp.ListTest do
 
   describe "create_member/5" do
     test "creates member" do
-      use_cassette "member.create" do
+      use_cassette "member.create", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
 
@@ -42,7 +42,7 @@ defmodule Mailchimp.ListTest do
 
   describe "create_members/5" do
     test "creates members" do
-      use_cassette "members.create" do
+      use_cassette "members.create", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
 
@@ -71,7 +71,7 @@ defmodule Mailchimp.ListTest do
 
   describe "get_member/5" do
     test "gets member" do
-      use_cassette "member.get" do
+      use_cassette "member.get", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
 
@@ -85,7 +85,7 @@ defmodule Mailchimp.ListTest do
 
   describe "interest_categories/1" do
     test "returns list success" do
-      use_cassette "interest_categories" do
+      use_cassette "interest_categories", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
         {:ok, [%InterestCategory{}]} = List.interest_categories(list)

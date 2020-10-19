@@ -12,7 +12,7 @@ defmodule Mailchimp.MemberTest do
 
   describe "update/1" do
     test "updates member" do
-      use_cassette "member.update" do
+      use_cassette "member.update", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
         member = List.get_member!(list, "mailchimp1-test@elixir.com")
@@ -24,7 +24,7 @@ defmodule Mailchimp.MemberTest do
 
   describe "delete/1" do
     test "deletes member" do
-      use_cassette "member.delete" do
+      use_cassette "member.delete", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
         member = List.get_member!(list, "eric+1@clockk.com")

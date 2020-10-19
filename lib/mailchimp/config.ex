@@ -14,6 +14,7 @@ defmodule Mailchimp.Config do
       iex> Application.put_env(:mailchimp, :api_key, "your apikey-us12")
       iex> Mailchimp.Config.api_key!()
       "your apikey-us12"
+      iex> Application.delete_env(:mailchimp, :api_key)
 
   """
   @spec api_key!() :: String.t() | no_return
@@ -27,6 +28,7 @@ defmodule Mailchimp.Config do
       iex> Application.put_env(:mailchimp, :api_version, "1.0")
       iex> Mailchimp.Config.api_version()
       "1.0"
+      iex> Application.delete_env(:mailchimp, :api_version)
 
       iex> Application.delete_env(:mailchimp, :api_version)
       iex> Mailchimp.Config.api_version()
@@ -44,6 +46,7 @@ defmodule Mailchimp.Config do
     iex> Application.put_env(:mailchimp, :api_endpoint, "api.mc.local")
     iex> Mailchimp.Config.api_endpoint()
     "api.mc.local"
+    iex> Application.delete_env(:mailchimp, :api_endpoint)
 
     iex> Application.delete_env(:mailchimp, :api_endpoint)
     iex> Mailchimp.Config.api_endpoint()
@@ -61,6 +64,7 @@ defmodule Mailchimp.Config do
       iex> Application.put_env(:mailchimp, :api_key, "your apikey-us12")
       iex> Mailchimp.Config.shard!()
       "us12"
+      iex> Application.delete_env(:mailchimp, :api_key)
 
   """
   @spec shard!() :: String.t() | no_return
@@ -79,6 +83,7 @@ defmodule Mailchimp.Config do
       iex> Application.delete_env(:mailchimp, :api_version)
       iex> Mailchimp.Config.root_endpoint!()
       "https://us12.api.mailchimp.com/3.0/"
+      iex> Application.delete_env(:mailchimp, :api_key)
 
   """
   @spec root_endpoint!() :: String.t() | no_return

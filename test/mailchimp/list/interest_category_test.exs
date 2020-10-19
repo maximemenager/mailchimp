@@ -13,8 +13,13 @@ defmodule Mailchimp.List.InterestCategoryTest do
   end
 
   describe "interests/1" do
+    setup do
+      Application.put_env(:mailchimp, :api_key, "your apikey-us19")
+      :ok
+    end
+
     test "returns list success" do
-      use_cassette "interests" do
+      use_cassette "interests", bypass: true do
         account = Account.get!()
         [list] = Account.lists!(account)
         [category] = List.interest_categories!(list)

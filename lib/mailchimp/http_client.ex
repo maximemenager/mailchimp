@@ -16,11 +16,13 @@ defmodule Mailchimp.HTTPClient do
       iex> Application.delete_env(:mailchimp, :api_version)
       iex> Mailchimp.HTTPClient.process_request_url("test")
       "https://us12.api.mailchimp.com/3.0/test"
+      iex> Application.delete_env(:mailchimp, :api_key)
 
       iex> Application.put_env(:mailchimp, :api_key, "your apikey-us12")
       iex> Application.delete_env(:mailchimp, :api_version)
       iex> Mailchimp.HTTPClient.process_request_url("https://us12.api.mailchimp.com/3.0/test")
       "https://us12.api.mailchimp.com/3.0/test"
+      iex> Application.delete_env(:mailchimp, :api_key)
 
   """
 
@@ -32,7 +34,8 @@ defmodule Mailchimp.HTTPClient do
         url
 
       String.starts_with?(url, "/") ->
-        root <> String.slice(url, 1, 1000)
+        "/" <> splitted_url = url
+        root <> splitted_url
 
       true ->
         root <> url
@@ -55,6 +58,7 @@ defmodule Mailchimp.HTTPClient do
       iex> Application.put_env(:mailchimp, :api_key, "your apikey-us12")
       iex> Mailchimp.HTTPClient.process_request_headers([])
       [{"Authorization", "Basic your apikey-us12"}]
+      iex> Application.delete_env(:mailchimp, :api_key)
 
   """
   def process_request_headers(headers) do
